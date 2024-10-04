@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Catapult : MonoBehaviour
 {
-    [SerializeField] private float UpperBaseSpring = 20f;
-    [SerializeField] private float LowerBaseSpring = 10f;
-
+    private const KeyCode SpawnKey = KeyCode.O;
+    private const KeyCode PushLauncherKey = KeyCode.P;
+    
+    [SerializeField] private float _upperBaseSpring = 20f;
+    [SerializeField] private float _lowerBaseSpring = 10f;
     [SerializeField] private SpringJoint _springJoint;
     [SerializeField] private Rigidbody _lowerBase;
     [SerializeField] private Rigidbody _upperBase;
@@ -14,16 +14,16 @@ public class Catapult : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.P))
+        if (Input.GetKey(PushLauncherKey))
         {
             _springJoint.connectedBody = _upperBase;
-            _springJoint.spring = UpperBaseSpring;
+            _springJoint.spring = _upperBaseSpring;
         }
 
-        if (Input.GetKey(KeyCode.O))
+        if (Input.GetKey(SpawnKey))
         {
             _springJoint.connectedBody = _lowerBase;
-            _springJoint.spring = LowerBaseSpring;
+            _springJoint.spring = _lowerBaseSpring;
             _laucnher.TakeBomb();
         }
     }
